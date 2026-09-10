@@ -110,25 +110,35 @@ export default function EnquiryForm() {
       const web3FormsKey = import.meta.env.VITE_WEB3FORMS_KEY;
 
       if (endpoint) {
-        await fetch(endpoint, {
+        const res = await fetch(endpoint, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
           body: JSON.stringify(enquiryPayload),
         });
+        if (!res.ok) throw new Error('Endpoint error');
       } else if (web3FormsKey) {
-        await fetch('https://api.web3forms.com/submit', {
+        const res = await fetch('https://api.web3forms.com/submit', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
           body: JSON.stringify({
             access_key: web3FormsKey,
-            subject: `New Event Enquiry from ${formData.name} - Mixologist Barz`,
+            subject: `New Event Enquiry from ${formData.name} (${formData.occasion}) - Mixologist Barz`,
             from_name: 'Mixologist Barz Website',
-            to_email: SITE_INFO.contactEmail,
-            ...enquiryPayload,
+            "Client Name": formData.name,
+            "Contact Number": `${formData.countryCode} ${formData.phone}`,
+            "Event Date": formData.date,
+            "City / Destination": formData.city,
+            "Guest Count": formData.guestCount,
+            "Occasion": formData.occasion,
+            "Venue Type": formData.venue,
+            "Special Remarks": formData.remark,
           }),
         });
+        const data = await res.json();
+        if (!data.success) {
+          console.warn('Web3Forms message:', data.message);
+        }
       } else {
-        // Log formatted output and simulate network transition
         console.log('NEW EVENT ENQUIRY RECEIVED (Ready for production dispatch):', enquiryPayload);
         await new Promise((resolve) => setTimeout(resolve, 1000));
       }
