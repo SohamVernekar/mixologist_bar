@@ -1,6 +1,6 @@
 import React from 'react';
 import { ASSETS } from '../data/siteData';
-import { ArrowRight, Compass, MapPin } from 'lucide-react';
+import { ArrowRight, MapPin } from 'lucide-react';
 
 export default function DestinationEvents() {
   return (
@@ -189,11 +189,12 @@ export default function DestinationEvents() {
             borderRadius: '4px',
             border: '1px solid rgba(212, 175, 55, 0.25)',
           }}
+          className="destination-cta-bar"
         >
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
-            <MapPin size={20} style={{ color: 'var(--gold-primary)' }} />
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }} className="destination-cta-text">
+            <MapPin size={20} style={{ color: 'var(--gold-primary)', flexShrink: 0 }} />
             <div>
-              <h4 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.15rem', color: '#ffffff', fontWeight: '600' }}>
+              <h4 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(1rem, 3vw, 1.15rem)', color: '#ffffff', fontWeight: '600' }}>
                 Planning a Destination Event or Outdoor Wedding?
               </h4>
               <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>
@@ -202,7 +203,7 @@ export default function DestinationEvents() {
             </div>
           </div>
 
-          <a href="#enquiry" className="btn-primary">
+          <a href="#enquiry" className="btn-primary" style={{ flexShrink: 0 }}>
             <span>PLAN YOUR EVENT</span>
             <ArrowRight size={15} />
           </a>
@@ -213,9 +214,20 @@ export default function DestinationEvents() {
         @media (max-width: 900px) {
           .destination-grid {
             grid-template-columns: 1fr !important;
+            gap: 1.5rem !important;
           }
           .destination-banner, .destination-action {
             grid-column: span 12 !important;
+          }
+        }
+        @media (max-width: 640px) {
+          .destination-cta-bar {
+            padding: 1.5rem 1.25rem !important;
+            flex-direction: column !important;
+            align-items: stretch !important;
+          }
+          .destination-cta-bar .btn-primary {
+            width: 100% !important;
           }
         }
       `}</style>

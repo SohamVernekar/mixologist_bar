@@ -1,6 +1,6 @@
 import React from 'react';
 import { ASSETS } from '../data/siteData';
-import { Wine, Layers, Flame, ShieldCheck, GlassWater } from 'lucide-react';
+import { Wine, Layers, Flame, ShieldCheck } from 'lucide-react';
 
 export default function BarSetup() {
   const setupFeatures = [
@@ -48,7 +48,7 @@ export default function BarSetup() {
           <h2
             style={{
               fontFamily: 'var(--font-serif)',
-              fontSize: 'clamp(2.3rem, 5vw, 4.2rem)',
+              fontSize: 'clamp(2.1rem, 5.8vw, 4.2rem)',
               lineHeight: 1.08,
               fontWeight: '700',
               color: '#ffffff',
@@ -66,7 +66,7 @@ export default function BarSetup() {
             style={{
               fontFamily: 'var(--font-sans)',
               color: 'var(--text-muted)',
-              fontSize: '1.05rem',
+              fontSize: 'clamp(0.95rem, 2vw, 1.05rem)',
               lineHeight: 1.6,
               maxWidth: '640px',
             }}
@@ -125,14 +125,14 @@ export default function BarSetup() {
                   bottom: 0,
                   left: 0,
                   width: '100%',
-                  padding: '1.5rem',
+                  padding: '1.25rem',
                   background: 'linear-gradient(180deg, transparent 0%, rgba(7, 7, 9, 0.85) 60%, rgba(7, 7, 9, 0.98) 100%)',
                 }}
               >
                 <span
                   style={{
                     fontFamily: 'var(--font-sans)',
-                    fontSize: '0.68rem',
+                    fontSize: '0.65rem',
                     letterSpacing: '0.2em',
                     textTransform: 'uppercase',
                     color: 'var(--gold-primary)',
@@ -146,7 +146,7 @@ export default function BarSetup() {
                 <h4
                   style={{
                     fontFamily: 'var(--font-serif)',
-                    fontSize: '1.15rem',
+                    fontSize: 'clamp(1rem, 3.2vw, 1.15rem)',
                     color: '#ffffff',
                     fontWeight: '600',
                   }}
@@ -163,16 +163,16 @@ export default function BarSetup() {
               gridColumn: 'span 7',
               display: 'grid',
               gridTemplateColumns: 'repeat(2, 1fr)',
-              gap: '1.5rem',
+              gap: '1.25rem',
             }}
             className="barsetup-features-col"
           >
             {setupFeatures.map((feat, idx) => (
               <div
                 key={idx}
-                className="glass-card"
+                className="glass-card barsetup-card"
                 style={{
-                  padding: '1.8rem',
+                  padding: '1.6rem',
                   borderRadius: '2px',
                   display: 'flex',
                   flexDirection: 'column',
@@ -180,8 +180,8 @@ export default function BarSetup() {
               >
                 <div
                   style={{
-                    width: '40px',
-                    height: '40px',
+                    width: '38px',
+                    height: '38px',
                     borderRadius: '2px',
                     backgroundColor: 'rgba(212, 175, 55, 0.1)',
                     border: '1px solid rgba(212, 175, 55, 0.3)',
@@ -189,7 +189,7 @@ export default function BarSetup() {
                     alignItems: 'center',
                     justifyContent: 'center',
                     color: 'var(--gold-primary)',
-                    marginBottom: '1.25rem',
+                    marginBottom: '1rem',
                   }}
                 >
                   {feat.icon}
@@ -198,10 +198,10 @@ export default function BarSetup() {
                 <h4
                   style={{
                     fontFamily: 'var(--font-serif)',
-                    fontSize: '1.15rem',
+                    fontSize: '1.1rem',
                     color: '#ffffff',
                     fontWeight: '600',
-                    marginBottom: '0.65rem',
+                    marginBottom: '0.5rem',
                     letterSpacing: '0.02em',
                   }}
                 >
@@ -211,7 +211,7 @@ export default function BarSetup() {
                 <p
                   style={{
                     fontFamily: 'var(--font-sans)',
-                    fontSize: '0.88rem',
+                    fontSize: '0.86rem',
                     lineHeight: '1.6',
                     color: 'var(--text-muted)',
                   }}
@@ -228,7 +228,7 @@ export default function BarSetup() {
         @media (max-width: 960px) {
           .barsetup-grid {
             grid-template-columns: 1fr !important;
-            gap: 2.5rem !important;
+            gap: 2.25rem !important;
           }
           .barsetup-img-col, .barsetup-features-col {
             grid-column: span 12 !important;
@@ -237,6 +237,10 @@ export default function BarSetup() {
         @media (max-width: 600px) {
           .barsetup-features-col {
             grid-template-columns: 1fr !important;
+            gap: 1rem !important;
+          }
+          .barsetup-card {
+            padding: 1.25rem !important;
           }
         }
       `}</style>

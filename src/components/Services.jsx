@@ -59,7 +59,7 @@ export default function Services() {
           }}
           className="services-grid"
         >
-          {/* Left Column: Service Selector Tabs */}
+          {/* Left Column: Service Selector Tabs (Desktop Vertical / Mobile Horizontal Pills) */}
           <div
             style={{
               gridColumn: 'span 5',
@@ -75,42 +75,33 @@ export default function Services() {
                 <div
                   key={service.id}
                   onClick={() => setActiveServiceIndex(index)}
+                  className={`service-tab-item ${isActive ? 'active' : ''}`}
                   style={{
-                    padding: '1.4rem 1.6rem',
+                    padding: '1.25rem 1.5rem',
                     borderRadius: '2px',
                     border: isActive
-                      ? '1px solid rgba(212, 175, 55, 0.55)'
-                      : '1px solid rgba(255, 255, 255, 0.06)',
+                      ? '1px solid rgba(212, 175, 55, 0.65)'
+                      : '1px solid rgba(255, 255, 255, 0.08)',
                     backgroundColor: isActive
-                      ? 'rgba(212, 175, 55, 0.08)'
-                      : 'rgba(15, 15, 20, 0.45)',
+                      ? 'rgba(212, 175, 55, 0.12)'
+                      : 'rgba(15, 15, 20, 0.55)',
                     backdropFilter: 'blur(10px)',
                     cursor: 'pointer',
-                    transition: 'all 0.35s cubic-bezier(0.16, 1, 0.3, 1)',
+                    transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'space-between',
-                  }}
-                  onMouseEnter={(e) => {
-                    if (!isActive) {
-                      e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.05)';
-                      e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.15)';
-                    }
-                  }}
-                  onMouseLeave={(e) => {
-                    if (!isActive) {
-                      e.currentTarget.style.backgroundColor = 'rgba(15, 15, 20, 0.45)';
-                      e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.06)';
-                    }
+                    minHeight: '52px',
                   }}
                 >
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', minWidth: 0 }}>
                     <span
                       style={{
                         fontFamily: 'var(--font-serif)',
                         fontSize: '1rem',
                         fontWeight: '700',
                         color: isActive ? 'var(--gold-primary)' : 'var(--text-muted)',
+                        flexShrink: 0,
                       }}
                     >
                       {service.number}
@@ -118,10 +109,13 @@ export default function Services() {
                     <span
                       style={{
                         fontFamily: 'var(--font-serif)',
-                        fontSize: '1.05rem',
+                        fontSize: 'clamp(0.9rem, 2.5vw, 1.05rem)',
                         fontWeight: isActive ? '700' : '500',
                         color: isActive ? '#ffffff' : 'rgba(220, 220, 230, 0.75)',
                         letterSpacing: '0.04em',
+                        whiteSpace: 'nowrap',
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis',
                       }}
                     >
                       {service.title}
@@ -130,10 +124,12 @@ export default function Services() {
 
                   <ArrowRight
                     size={16}
+                    className="service-arrow"
                     style={{
                       color: isActive ? 'var(--gold-primary)' : 'transparent',
                       transform: isActive ? 'translateX(0)' : 'translateX(-8px)',
                       transition: 'all 0.3s ease',
+                      flexShrink: 0,
                     }}
                   />
                 </div>
@@ -148,9 +144,9 @@ export default function Services() {
               position: 'relative',
               borderRadius: '3px',
               overflow: 'hidden',
-              border: '1px solid rgba(212, 175, 55, 0.25)',
+              border: '1px solid rgba(212, 175, 55, 0.3)',
               backgroundColor: '#0c0c12',
-              minHeight: '480px',
+              minHeight: '460px',
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'flex-end',
@@ -185,7 +181,7 @@ export default function Services() {
                   position: 'absolute',
                   inset: 0,
                   background:
-                    'linear-gradient(180deg, rgba(7, 7, 10, 0.1) 0%, rgba(7, 7, 10, 0.85) 60%, rgba(7, 7, 10, 0.98) 100%)',
+                    'linear-gradient(180deg, rgba(7, 7, 10, 0.1) 0%, rgba(7, 7, 10, 0.85) 55%, rgba(7, 7, 10, 0.98) 100%)',
                 }}
               />
             </div>
@@ -195,18 +191,19 @@ export default function Services() {
               style={{
                 position: 'relative',
                 zIndex: 2,
-                padding: '2.5rem',
+                padding: '2.2rem',
               }}
+              className="service-card-body"
             >
               <span
                 style={{
                   display: 'inline-block',
                   fontFamily: 'var(--font-sans)',
-                  fontSize: '0.72rem',
+                  fontSize: '0.68rem',
                   letterSpacing: '0.22em',
                   textTransform: 'uppercase',
                   color: 'var(--gold-primary)',
-                  marginBottom: '0.5rem',
+                  marginBottom: '0.4rem',
                   fontWeight: '700',
                 }}
               >
@@ -216,11 +213,11 @@ export default function Services() {
               <h3
                 style={{
                   fontFamily: 'var(--font-serif)',
-                  fontSize: '1.9rem',
+                  fontSize: 'clamp(1.5rem, 4vw, 1.9rem)',
                   color: '#ffffff',
                   fontWeight: '700',
                   letterSpacing: '0.03em',
-                  marginBottom: '1rem',
+                  marginBottom: '0.75rem',
                 }}
               >
                 {activeService.title}
@@ -229,10 +226,10 @@ export default function Services() {
               <p
                 style={{
                   fontFamily: 'var(--font-sans)',
-                  fontSize: '0.98rem',
+                  fontSize: '0.92rem',
                   lineHeight: '1.6',
                   color: 'rgba(230, 230, 240, 0.85)',
-                  marginBottom: '1.5rem',
+                  marginBottom: '1.25rem',
                   maxWidth: '560px',
                 }}
               >
@@ -244,8 +241,8 @@ export default function Services() {
                 style={{
                   display: 'flex',
                   flexWrap: 'wrap',
-                  gap: '0.75rem',
-                  marginBottom: '2rem',
+                  gap: '0.6rem',
+                  marginBottom: '1.75rem',
                 }}
               >
                 {activeService.highlights.map((highlight, idx) => (
@@ -257,14 +254,14 @@ export default function Services() {
                       gap: '0.4rem',
                       background: 'rgba(255, 255, 255, 0.08)',
                       backdropFilter: 'blur(8px)',
-                      padding: '0.4rem 0.85rem',
+                      padding: '0.35rem 0.75rem',
                       borderRadius: '2px',
-                      border: '1px solid rgba(255, 255, 255, 0.1)',
-                      fontSize: '0.78rem',
+                      border: '1px solid rgba(255, 255, 255, 0.12)',
+                      fontSize: '0.75rem',
                       color: 'var(--gold-light)',
                     }}
                   >
-                    <CheckCircle2 size={13} style={{ color: 'var(--gold-primary)' }} />
+                    <CheckCircle2 size={13} style={{ color: 'var(--gold-primary)', flexShrink: 0 }} />
                     <span>{highlight}</span>
                   </div>
                 ))}
@@ -283,12 +280,31 @@ export default function Services() {
         @media (max-width: 960px) {
           .services-grid {
             grid-template-columns: 1fr !important;
+            gap: 1.5rem !important;
           }
           .services-tab-col, .services-display-card {
             grid-column: span 12 !important;
           }
+          .services-tab-col {
+            flex-direction: row !important;
+            overflow-x: auto !important;
+            padding-bottom: 0.5rem !important;
+            gap: 0.5rem !important;
+            scrollbar-width: thin;
+          }
+          .service-tab-item {
+            flex-shrink: 0 !important;
+            padding: 0.75rem 1.1rem !important;
+            min-height: 44px !important;
+          }
+          .service-arrow {
+            display: none !important;
+          }
           .services-display-card {
-            min-height: 480px !important;
+            min-height: 420px !important;
+          }
+          .service-card-body {
+            padding: 1.5rem 1.25rem !important;
           }
         }
       `}</style>

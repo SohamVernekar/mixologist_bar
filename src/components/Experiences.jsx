@@ -1,6 +1,5 @@
 import React from 'react';
 import { ASSETS } from '../data/siteData';
-import { Wine, Flame } from 'lucide-react';
 
 export default function Experiences() {
   const experiencesList = [
@@ -86,9 +85,10 @@ export default function Experiences() {
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(360px, 1fr))',
+            gridTemplateColumns: 'repeat(2, 1fr)',
             gap: '2.5rem',
           }}
+          className="experiences-grid"
         >
           {experiencesList.map((exp, idx) => (
             <div
@@ -145,15 +145,15 @@ export default function Experiences() {
               </div>
 
               {/* Text content */}
-              <div style={{ padding: '2.2rem', flex: 1, display: 'flex', flexDirection: 'column' }}>
+              <div style={{ padding: '2rem 1.8rem', flex: 1, display: 'flex', flexDirection: 'column' }} className="exp-card-body">
                 <span
                   style={{
-                    fontSize: '0.72rem',
+                    fontSize: '0.7rem',
                     letterSpacing: '0.2em',
                     textTransform: 'uppercase',
                     color: 'var(--gold-primary)',
                     display: 'block',
-                    marginBottom: '0.4rem',
+                    marginBottom: '0.35rem',
                     fontWeight: '700',
                   }}
                 >
@@ -163,10 +163,10 @@ export default function Experiences() {
                 <h3
                   style={{
                     fontFamily: 'var(--font-serif)',
-                    fontSize: '1.55rem',
+                    fontSize: 'clamp(1.3rem, 3.2vw, 1.55rem)',
                     color: '#ffffff',
                     fontWeight: '600',
-                    marginBottom: '0.75rem',
+                    marginBottom: '0.65rem',
                   }}
                 >
                   {exp.title}
@@ -175,7 +175,7 @@ export default function Experiences() {
                 <p
                   style={{
                     fontFamily: 'var(--font-sans)',
-                    fontSize: '0.92rem',
+                    fontSize: '0.9rem',
                     lineHeight: 1.65,
                     color: 'var(--text-muted)',
                     marginTop: 'auto',
@@ -188,6 +188,18 @@ export default function Experiences() {
           ))}
         </div>
       </div>
+
+      <style>{`
+        @media (max-width: 800px) {
+          .experiences-grid {
+            grid-template-columns: 1fr !important;
+            gap: 1.75rem !important;
+          }
+          .exp-card-body {
+            padding: 1.5rem 1.25rem !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, GlassWater, ArrowUpRight } from 'lucide-react';
-import { SITE_INFO } from '../data/siteData';
 
 export default function Navbar({ onOpenEnquiry }) {
   const [scrolled, setScrolled] = useState(false);
@@ -53,15 +52,18 @@ export default function Navbar({ onOpenEnquiry }) {
       <header
         className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
           scrolled
-            ? 'py-3.5 bg-[#08080a]/90 backdrop-blur-md border-b border-white/10 shadow-2xl shadow-black/60'
-            : 'py-6 bg-transparent border-b border-transparent'
+            ? 'bg-[#08080a]/92 backdrop-blur-md border-b border-white/10 shadow-2xl shadow-black/60'
+            : 'bg-transparent border-b border-transparent'
         }`}
         style={{
           transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
-          padding: scrolled ? '0.9rem 1.5rem' : '1.5rem 1.5rem',
+          paddingTop: scrolled ? 'calc(0.75rem + var(--safe-top))' : 'calc(1.2rem + var(--safe-top))',
+          paddingBottom: scrolled ? '0.75rem' : '1.2rem',
+          paddingLeft: 'max(1rem, var(--safe-left))',
+          paddingRight: 'max(1rem, var(--safe-right))',
           backdropFilter: scrolled ? 'blur(16px)' : 'none',
           WebkitBackdropFilter: scrolled ? 'blur(16px)' : 'none',
-          backgroundColor: scrolled ? 'rgba(8, 8, 11, 0.92)' : 'transparent',
+          backgroundColor: scrolled ? 'rgba(8, 8, 11, 0.94)' : 'transparent',
           borderBottom: scrolled ? '1px solid rgba(255, 255, 255, 0.08)' : '1px solid transparent',
         }}
       >
@@ -72,6 +74,7 @@ export default function Navbar({ onOpenEnquiry }) {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
+            gap: '0.75rem',
           }}
         >
           {/* Brand Logo */}
@@ -83,12 +86,13 @@ export default function Navbar({ onOpenEnquiry }) {
               alignItems: 'center',
               gap: '0.65rem',
               color: '#ffffff',
+              minWidth: 0,
             }}
           >
             <div
               style={{
-                width: '32px',
-                height: '32px',
+                width: '34px',
+                height: '34px',
                 borderRadius: '50%',
                 border: '1px solid rgba(212, 175, 55, 0.4)',
                 background: 'rgba(212, 175, 55, 0.08)',
@@ -96,21 +100,25 @@ export default function Navbar({ onOpenEnquiry }) {
                 alignItems: 'center',
                 justifyContent: 'center',
                 color: '#d4af37',
+                flexShrink: 0,
               }}
             >
               <GlassWater size={17} />
             </div>
-            <div>
+            <div style={{ minWidth: 0, overflow: 'hidden' }}>
               <span
                 style={{
                   fontFamily: 'var(--font-serif)',
-                  fontSize: '1.15rem',
+                  fontSize: 'clamp(0.95rem, 3.8vw, 1.15rem)',
                   fontWeight: '700',
-                  letterSpacing: '0.18em',
+                  letterSpacing: '0.14em',
                   color: '#ffffff',
                   textTransform: 'uppercase',
                   display: 'block',
                   lineHeight: 1.1,
+                  whiteSpace: 'nowrap',
+                  textOverflow: 'ellipsis',
+                  overflow: 'hidden',
                 }}
               >
                 MIXOLOGIST BARZ
@@ -118,8 +126,8 @@ export default function Navbar({ onOpenEnquiry }) {
               <span
                 style={{
                   fontFamily: 'var(--font-sans)',
-                  fontSize: '0.62rem',
-                  letterSpacing: '0.24em',
+                  fontSize: '0.58rem',
+                  letterSpacing: '0.22em',
                   color: 'var(--gold-primary)',
                   textTransform: 'uppercase',
                   display: 'block',
@@ -164,7 +172,7 @@ export default function Navbar({ onOpenEnquiry }) {
           </nav>
 
           {/* Right Action Button & Mobile Toggle */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexShrink: 0 }}>
             <a
               href="#enquiry"
               className="btn-primary"
@@ -173,6 +181,7 @@ export default function Navbar({ onOpenEnquiry }) {
                 padding: '0.7rem 1.4rem',
                 fontSize: '0.75rem',
                 letterSpacing: '0.14em',
+                minHeight: '40px',
               }}
               id="nav-cta-btn"
             >
@@ -188,7 +197,8 @@ export default function Navbar({ onOpenEnquiry }) {
                 background: 'rgba(255, 255, 255, 0.06)',
                 border: '1px solid rgba(255, 255, 255, 0.12)',
                 color: '#ffffff',
-                padding: '0.55rem',
+                width: '42px',
+                height: '42px',
                 borderRadius: '4px',
                 cursor: 'pointer',
                 display: 'flex',
@@ -211,35 +221,39 @@ export default function Navbar({ onOpenEnquiry }) {
           top: 0,
           left: 0,
           width: '100%',
-          height: '100vh',
+          height: '100dvh',
           backgroundColor: 'rgba(7, 7, 10, 0.98)',
           backdropFilter: 'blur(20px)',
           WebkitBackdropFilter: 'blur(20px)',
           zIndex: 49,
           display: 'flex',
           flexDirection: 'column',
-          justifyContent: 'center',
-          padding: '2rem 2.5rem',
-          transition: 'all 0.5s cubic-bezier(0.16, 1, 0.3, 1)',
+          justifyContent: 'space-between',
+          paddingTop: 'calc(5.5rem + var(--safe-top))',
+          paddingBottom: 'calc(2rem + var(--safe-bottom))',
+          paddingLeft: 'max(1.5rem, var(--safe-left))',
+          paddingRight: 'max(1.5rem, var(--safe-right))',
+          overflowY: 'auto',
+          transition: 'all 0.45s cubic-bezier(0.16, 1, 0.3, 1)',
           transform: mobileMenuOpen ? 'translateY(0)' : 'translateY(-100%)',
           opacity: mobileMenuOpen ? 1 : 0,
           pointerEvents: mobileMenuOpen ? 'auto' : 'none',
         }}
       >
-        <div style={{ maxWidth: '400px', margin: '0 auto', width: '100%' }}>
+        <div style={{ maxWidth: '420px', margin: '0 auto', width: '100%' }}>
           <p
             style={{
               fontFamily: 'var(--font-sans)',
-              fontSize: '0.75rem',
+              fontSize: '0.72rem',
               letterSpacing: '0.25em',
               color: 'var(--gold-primary)',
               textTransform: 'uppercase',
-              marginBottom: '2rem',
+              marginBottom: '1.5rem',
             }}
           >
             Navigation
           </p>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
             {navLinks.map((link, idx) => (
               <a
                 key={link.name}
@@ -247,16 +261,17 @@ export default function Navbar({ onOpenEnquiry }) {
                 onClick={(e) => handleLinkClick(e, link.href)}
                 style={{
                   fontFamily: 'var(--font-serif)',
-                  fontSize: '1.65rem',
+                  fontSize: 'clamp(1.35rem, 5vw, 1.65rem)',
                   color: '#ffffff',
                   textDecoration: 'none',
                   letterSpacing: '0.06em',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'space-between',
-                  paddingBottom: '0.6rem',
+                  padding: '0.65rem 0',
                   borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
                   transition: 'all 0.3s ease',
+                  minHeight: '48px',
                 }}
                 onMouseEnter={(e) => (e.currentTarget.style.color = '#d4af37')}
                 onMouseLeave={(e) => (e.currentTarget.style.color = '#ffffff')}
@@ -275,7 +290,7 @@ export default function Navbar({ onOpenEnquiry }) {
             ))}
           </div>
 
-          <div style={{ marginTop: '2.5rem' }}>
+          <div style={{ marginTop: '2rem' }}>
             <a
               href="#enquiry"
               onClick={() => setMobileMenuOpen(false)}

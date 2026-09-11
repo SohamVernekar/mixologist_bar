@@ -1,6 +1,6 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { ASSETS } from '../data/siteData';
-import { Play, Pause, Volume2, VolumeX, Flame, Radio } from 'lucide-react';
+import { Play, Pause, Volume2, VolumeX, Radio } from 'lucide-react';
 
 export default function LiveMixology() {
   const [isPlaying, setIsPlaying] = useState(true);
@@ -152,6 +152,7 @@ export default function LiveMixology() {
               loop
               playsInline
               autoPlay
+              preload="metadata"
               style={{
                 width: '100%',
                 height: '100%',
@@ -166,7 +167,7 @@ export default function LiveMixology() {
               style={{
                 position: 'absolute',
                 inset: 0,
-                background: 'linear-gradient(180deg, rgba(0,0,0,0.3) 0%, transparent 40%, rgba(0,0,0,0.75) 100%)',
+                background: 'linear-gradient(180deg, rgba(0,0,0,0.3) 0%, transparent 40%, rgba(0,0,0,0.85) 100%)',
                 pointerEvents: 'none',
               }}
             />
@@ -175,29 +176,33 @@ export default function LiveMixology() {
             <div
               style={{
                 position: 'absolute',
-                top: '1.5rem',
-                left: '1.5rem',
+                top: '1rem',
+                left: '1rem',
                 display: 'flex',
                 alignItems: 'center',
-                gap: '0.6rem',
+                gap: '0.5rem',
                 background: 'rgba(7, 7, 10, 0.85)',
                 backdropFilter: 'blur(10px)',
-                padding: '0.45rem 1rem',
+                padding: '0.35rem 0.85rem',
                 borderRadius: '2px',
                 border: '1px solid rgba(212, 175, 55, 0.3)',
+                maxWidth: 'calc(100% - 2rem)',
               }}
             >
-              <Radio size={14} style={{ color: isMuted ? 'var(--text-muted)' : '#22c55e' }} />
+              <Radio size={13} style={{ color: isMuted ? 'var(--text-muted)' : '#22c55e', flexShrink: 0 }} />
               <span
                 style={{
-                  fontSize: '0.72rem',
-                  letterSpacing: '0.16em',
+                  fontSize: '0.68rem',
+                  letterSpacing: '0.14em',
                   textTransform: 'uppercase',
                   color: '#ffffff',
                   fontWeight: '600',
+                  whiteSpace: 'nowrap',
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
                 }}
               >
-                {isMuted ? 'Audio Muted (Tap to Unmute)' : 'Live Audio Active'}
+                {isMuted ? 'Audio Muted' : 'Live Audio Active'}
               </span>
             </div>
 
@@ -205,46 +210,51 @@ export default function LiveMixology() {
             <div
               style={{
                 position: 'absolute',
-                bottom: '1.5rem',
-                left: '1.5rem',
-                right: '1.5rem',
+                bottom: '1.25rem',
+                left: '1.25rem',
+                right: '1.25rem',
                 display: 'flex',
                 justifyContent: 'space-between',
-                alignItems: 'center',
+                alignItems: 'flex-end',
+                gap: '1rem',
                 zIndex: 4,
               }}
+              className="live-video-controls-bar"
             >
-              <div>
+              <div className="live-video-title-wrap">
                 <h4
                   style={{
                     fontFamily: 'var(--font-serif)',
-                    fontSize: '1.35rem',
+                    fontSize: 'clamp(1.1rem, 3.5vw, 1.35rem)',
                     color: '#ffffff',
                     fontWeight: '600',
                     textShadow: '0 2px 8px rgba(0,0,0,0.8)',
+                    lineHeight: 1.2,
+                    marginBottom: '0.2rem',
                   }}
                 >
                   Theatrical Pours &amp; Dynamic Flair
                 </h4>
                 <p
                   style={{
-                    fontSize: '0.85rem',
+                    fontSize: '0.8rem',
                     color: 'rgba(230, 230, 245, 0.85)',
                     textShadow: '0 2px 8px rgba(0,0,0,0.8)',
                   }}
+                  className="live-video-subtitle"
                 >
-                  Live event capture — Mixologist Barz signature presentation
+                  Live event capture — Mixologist Barz signature
                 </p>
               </div>
 
               {/* Play/Pause & Sound Controls */}
-              <div style={{ display: 'flex', gap: '0.75rem' }}>
+              <div style={{ display: 'flex', gap: '0.6rem', flexShrink: 0 }} className="live-video-buttons">
                 <button
                   onClick={togglePlay}
                   aria-label={isPlaying ? 'Pause video' : 'Play video'}
                   style={{
-                    width: '46px',
-                    height: '46px',
+                    width: '44px',
+                    height: '44px',
                     borderRadius: '50%',
                     background: 'rgba(14, 14, 20, 0.9)',
                     backdropFilter: 'blur(12px)',
@@ -255,11 +265,12 @@ export default function LiveMixology() {
                     justifyContent: 'center',
                     cursor: 'pointer',
                     transition: 'all 0.3s ease',
+                    flexShrink: 0,
                   }}
                   onMouseEnter={(e) => (e.currentTarget.style.borderColor = 'var(--gold-primary)')}
                   onMouseLeave={(e) => (e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.25)')}
                 >
-                  {isPlaying ? <Pause size={18} /> : <Play size={18} />}
+                  {isPlaying ? <Pause size={17} /> : <Play size={17} />}
                 </button>
 
                 <button
@@ -268,20 +279,21 @@ export default function LiveMixology() {
                   style={{
                     display: 'flex',
                     alignItems: 'center',
-                    gap: '0.5rem',
-                    padding: '0 1.25rem',
-                    height: '46px',
-                    borderRadius: '23px',
+                    gap: '0.45rem',
+                    padding: '0 1rem',
+                    height: '44px',
+                    borderRadius: '22px',
                     background: isMuted ? 'rgba(14, 14, 20, 0.9)' : 'linear-gradient(135deg, #d4af37, #aa8420)',
                     backdropFilter: 'blur(12px)',
                     border: isMuted ? '1px solid rgba(212, 175, 55, 0.4)' : '1px solid var(--gold-light)',
                     color: isMuted ? 'var(--gold-light)' : '#08080a',
                     fontWeight: '700',
-                    fontSize: '0.78rem',
+                    fontSize: '0.74rem',
                     letterSpacing: '0.12em',
                     textTransform: 'uppercase',
                     cursor: 'pointer',
                     transition: 'all 0.3s ease',
+                    whiteSpace: 'nowrap',
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.boxShadow = '0 0 20px rgba(212, 175, 55, 0.4)';
@@ -290,8 +302,8 @@ export default function LiveMixology() {
                     e.currentTarget.style.boxShadow = 'none';
                   }}
                 >
-                  {isMuted ? <VolumeX size={17} /> : <Volume2 size={17} />}
-                  <span>{isMuted ? 'UNMUTE AUDIO' : 'AUDIO ON'}</span>
+                  {isMuted ? <VolumeX size={16} /> : <Volume2 size={16} />}
+                  <span>{isMuted ? 'UNMUTE' : 'AUDIO ON'}</span>
                 </button>
               </div>
             </div>
@@ -302,7 +314,23 @@ export default function LiveMixology() {
       <style>{`
         @media (max-width: 768px) {
           .video-player-container {
-            height: 380px !important;
+            height: 400px !important;
+          }
+        }
+        @media (max-width: 540px) {
+          .video-player-container {
+            height: 320px !important;
+          }
+          .live-video-controls-bar {
+            flex-direction: column !important;
+            align-items: flex-start !important;
+            gap: 0.75rem !important;
+            bottom: 1rem !important;
+            left: 1rem !important;
+            right: 1rem !important;
+          }
+          .live-video-subtitle {
+            display: none !important;
           }
         }
       `}</style>

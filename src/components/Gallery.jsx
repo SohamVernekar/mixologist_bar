@@ -57,8 +57,8 @@ export default function Gallery() {
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-            gap: '1.75rem',
+            gridTemplateColumns: 'repeat(3, 1fr)',
+            gap: '1.5rem',
           }}
           className="editorial-gallery-grid"
         >
@@ -67,7 +67,7 @@ export default function Gallery() {
               <div
                 key={item.id}
                 onClick={() => setLightboxIndex(index)}
-                className="img-container glass-panel"
+                className="img-container glass-panel gallery-item-card"
                 style={{
                   aspectRatio: item.aspectRatio || '4 / 3',
                   position: 'relative',
@@ -91,7 +91,7 @@ export default function Gallery() {
                   loading="lazy"
                 />
 
-                {/* Subtle Hover Reveal Overlay */}
+                {/* Subtle Hover & Mobile Reveal Overlay */}
                 <div
                   style={{
                     position: 'absolute',
@@ -110,6 +110,7 @@ export default function Gallery() {
                       display: 'flex',
                       justifyContent: 'space-between',
                       alignItems: 'flex-end',
+                      gap: '0.5rem',
                     }}
                   >
                     <div>
@@ -129,7 +130,7 @@ export default function Gallery() {
                       <h4
                         style={{
                           fontFamily: 'var(--font-serif)',
-                          fontSize: '1.05rem',
+                          fontSize: 'clamp(0.95rem, 2.5vw, 1.05rem)',
                           color: '#ffffff',
                           fontWeight: '600',
                         }}
@@ -149,6 +150,7 @@ export default function Gallery() {
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
+                        flexShrink: 0,
                       }}
                     >
                       <Maximize2 size={13} />
@@ -168,6 +170,21 @@ export default function Gallery() {
         onClose={() => setLightboxIndex(null)}
         onNavigate={(newIdx) => setLightboxIndex(newIdx)}
       />
+
+      <style>{`
+        @media (max-width: 900px) {
+          .editorial-gallery-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 1.25rem !important;
+          }
+        }
+        @media (max-width: 540px) {
+          .editorial-gallery-grid {
+            grid-template-columns: 1fr !important;
+            gap: 1rem !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }

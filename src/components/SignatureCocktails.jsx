@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { SIGNATURE_COCKTAILS_LIST } from '../data/siteData';
-import { ArrowLeft, ArrowRight, GlassWater } from 'lucide-react';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
 
 export default function SignatureCocktails() {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [touchStartX, setTouchStartX] = useState(null);
 
   const prevCocktail = () => {
     setCurrentIndex((prev) => (prev === 0 ? SIGNATURE_COCKTAILS_LIST.length - 1 : prev - 1));
@@ -11,6 +12,24 @@ export default function SignatureCocktails() {
 
   const nextCocktail = () => {
     setCurrentIndex((prev) => (prev === SIGNATURE_COCKTAILS_LIST.length - 1 ? 0 : prev + 1));
+  };
+
+  const handleTouchStart = (e) => {
+    setTouchStartX(e.touches[0].clientX);
+  };
+
+  const handleTouchEnd = (e) => {
+    if (touchStartX === null) return;
+    const touchEndX = e.changedTouches[0].clientX;
+    const diff = touchStartX - touchEndX;
+    if (Math.abs(diff) > 45) {
+      if (diff > 0) {
+        nextCocktail(); // Swiped left -> next
+      } else {
+        prevCocktail(); // Swiped right -> prev
+      }
+    }
+    setTouchStartX(null);
   };
 
   const current = SIGNATURE_COCKTAILS_LIST[currentIndex];
@@ -141,8 +160,10 @@ export default function SignatureCocktails() {
           </div>
         </div>
 
-        {/* 2-Column Split Showcase Box */}
+        {/* 2-Column Split Showcase Box with Touch Swipe */}
         <div
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
           style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(12, 1fr)',
@@ -153,6 +174,7 @@ export default function SignatureCocktails() {
             border: '1px solid rgba(255, 255, 255, 0.08)',
             padding: '3rem',
             position: 'relative',
+            touchAction: 'pan-y',
           }}
           className="cocktail-showcase-box"
         >
@@ -224,12 +246,12 @@ export default function SignatureCocktails() {
             <span
               style={{
                 fontFamily: 'var(--font-serif)',
-                fontSize: '1rem',
+                fontSize: '0.95rem',
                 color: 'var(--gold-primary)',
                 fontWeight: '700',
                 letterSpacing: '0.18em',
                 display: 'block',
-                marginBottom: '0.6rem',
+                marginBottom: '0.5rem',
               }}
             >
               SIGNATURE NO. 0{current.number}
@@ -238,12 +260,12 @@ export default function SignatureCocktails() {
             <h3
               style={{
                 fontFamily: 'var(--font-serif)',
-                fontSize: 'clamp(2rem, 3.5vw, 2.8rem)',
+                fontSize: 'clamp(1.7rem, 4vw, 2.8rem)',
                 lineHeight: 1.15,
                 color: '#ffffff',
                 fontWeight: '700',
                 letterSpacing: '0.03em',
-                marginBottom: '1rem',
+                marginBottom: '0.75rem',
               }}
             >
               {current.title}
@@ -252,11 +274,11 @@ export default function SignatureCocktails() {
             <p
               style={{
                 fontFamily: 'var(--font-editorial)',
-                fontSize: '1.4rem',
+                fontSize: 'clamp(1.15rem, 2.5vw, 1.4rem)',
                 fontStyle: 'italic',
                 color: 'var(--gold-light)',
                 lineHeight: 1.4,
-                marginBottom: '1.5rem',
+                marginBottom: '1.25rem',
               }}
             >
               “{current.subtitle}”
@@ -265,46 +287,62 @@ export default function SignatureCocktails() {
             <p
               style={{
                 fontFamily: 'var(--font-sans)',
-                fontSize: '0.98rem',
-                lineHeight: 1.7,
+                fontSize: '0.94rem',
+                lineHeight: 1.65,
                 color: 'var(--text-muted)',
-                marginBottom: '2.5rem',
+                marginBottom: '2rem',
                 maxWidth: '560px',
               }}
             >
               {current.note} All signature cocktails are designed with artisanal cordials, freshly squeezed citrus, and crystal-clear ice for pristine flavor retention.
             </p>
 
-            {/* Thumbnail Selectors */}
-            <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-              {SIGNATURE_COCKTAILS_LIST.map((item, index) => (
-                <button
-                  key={item.id}
-                  onClick={() => setCurrentIndex(index)}
-                  aria-label={`Select ${item.title}`}
-                  style={{
-                    width: '68px',
-                    height: '68px',
-                    borderRadius: '2px',
-                    overflow: 'hidden',
-                    border:
-                      index === currentIndex
-                        ? '2px solid var(--gold-primary)'
-                        : '1px solid rgba(255, 255, 255, 0.15)',
-                    opacity: index === currentIndex ? 1 : 0.45,
-                    cursor: 'pointer',
-                    padding: 0,
-                    transition: 'all 0.3s ease',
-                    background: '#07070a',
-                  }}
-                >
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                  />
-                </button>
-              ))}
+            {/* Thumbnail Selectors & Mobile Swipe Hint */}
+            <div>
+              <div style={{ display: 'flex', gap: '0.85rem', alignItems: 'center', flexWrap: 'wrap' }}>
+                {SIGNATURE_COCKTAILS_LIST.map((item, index) => (
+                  <button
+                    key={item.id}
+                    onClick={() => setCurrentIndex(index)}
+                    aria-label={`Select ${item.title}`}
+                    style={{
+                      width: '64px',
+                      height: '64px',
+                      borderRadius: '2px',
+                      overflow: 'hidden',
+                      border:
+                        index === currentIndex
+                          ? '2px solid var(--gold-primary)'
+                          : '1px solid rgba(255, 255, 255, 0.15)',
+                      opacity: index === currentIndex ? 1 : 0.45,
+                      cursor: 'pointer',
+                      padding: 0,
+                      transition: 'all 0.3s ease',
+                      background: '#07070a',
+                      flexShrink: 0,
+                    }}
+                  >
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                    />
+                  </button>
+                ))}
+              </div>
+              <span
+                style={{
+                  display: 'inline-block',
+                  fontSize: '0.72rem',
+                  color: 'var(--text-dim)',
+                  letterSpacing: '0.12em',
+                  textTransform: 'uppercase',
+                  marginTop: '0.85rem',
+                  fontFamily: 'var(--font-sans)',
+                }}
+              >
+                Tip: Swipe left/right on mobile to navigate
+              </span>
             </div>
           </div>
         </div>
@@ -314,8 +352,8 @@ export default function SignatureCocktails() {
         @media (max-width: 900px) {
           .cocktail-showcase-box {
             grid-template-columns: 1fr !important;
-            padding: 1.5rem !important;
-            gap: 2rem !important;
+            padding: 1.5rem 1.25rem !important;
+            gap: 1.75rem !important;
           }
           .cocktail-img-wrap, .cocktail-info-wrap {
             grid-column: span 12 !important;

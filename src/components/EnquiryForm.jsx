@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FORM_OPTIONS, SITE_INFO } from '../data/siteData';
-import { Send, CheckCircle2, AlertCircle, Mail, MessageSquare, ExternalLink } from 'lucide-react';
+import { Send, CheckCircle2, AlertCircle, Mail, MessageSquare } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
 export default function EnquiryForm() {
@@ -151,7 +151,7 @@ export default function EnquiryForm() {
           origin: { y: 0.6 },
           colors: ['#d4af37', '#fae29c', '#ffffff', '#e59844'],
         });
-      } catch (err) {
+      } catch {
         // ignore if not supported
       }
 
@@ -352,6 +352,7 @@ export default function EnquiryForm() {
                   justifyContent: 'center',
                   marginBottom: '2.5rem',
                 }}
+                className="enquiry-success-btns"
               >
                 <a
                   href={getMailtoHref()}
@@ -360,11 +361,11 @@ export default function EnquiryForm() {
                     display: 'inline-flex',
                     alignItems: 'center',
                     gap: '0.5rem',
-                    padding: '0.8rem 1.6rem',
-                    fontSize: '0.75rem',
+                    padding: '0.85rem 1.6rem',
+                    fontSize: '0.78rem',
                   }}
                 >
-                  <Mail size={15} style={{ color: 'var(--gold-primary)' }} />
+                  <Mail size={16} style={{ color: 'var(--gold-primary)' }} />
                   <span>Open Email Summary</span>
                 </a>
 
@@ -377,11 +378,11 @@ export default function EnquiryForm() {
                     display: 'inline-flex',
                     alignItems: 'center',
                     gap: '0.5rem',
-                    padding: '0.8rem 1.6rem',
-                    fontSize: '0.75rem',
+                    padding: '0.85rem 1.6rem',
+                    fontSize: '0.78rem',
                   }}
                 >
-                  <MessageSquare size={15} style={{ color: '#22c55e' }} />
+                  <MessageSquare size={16} style={{ color: '#22c55e' }} />
                   <span>Send via WhatsApp</span>
                 </a>
               </div>
@@ -392,10 +393,12 @@ export default function EnquiryForm() {
                   background: 'transparent',
                   border: 'none',
                   color: 'var(--text-muted)',
-                  fontSize: '0.82rem',
+                  fontSize: '0.85rem',
                   textDecoration: 'underline',
                   cursor: 'pointer',
                   letterSpacing: '0.05em',
+                  padding: '0.5rem',
+                  minHeight: '44px',
                 }}
               >
                 Submit another enquiry
@@ -639,14 +642,16 @@ export default function EnquiryForm() {
                   >
                     6. Contact Number <span style={{ color: 'var(--gold-primary)' }}>*</span>
                   </label>
-                  <div style={{ display: 'flex', gap: '0.5rem' }}>
+                  <div style={{ display: 'flex', gap: '0.4rem', width: '100%' }}>
                     <select
                       name="countryCode"
                       value={formData.countryCode}
                       onChange={handleChange}
                       style={{
-                        width: '100px',
+                        width: '94px',
+                        minWidth: '88px',
                         flexShrink: 0,
+                        padding: '0.85rem 0.4rem',
                       }}
                       className="luxury-input"
                     >
@@ -664,7 +669,7 @@ export default function EnquiryForm() {
                       value={formData.phone}
                       onChange={handleChange}
                       className="luxury-input"
-                      style={{ flex: 1 }}
+                      style={{ flex: 1, minWidth: 0 }}
                       aria-required="true"
                       aria-invalid={!!errors.phone}
                     />
@@ -794,6 +799,14 @@ export default function EnquiryForm() {
           }
           .full-col {
             grid-column: span 1 !important;
+          }
+        }
+        @media (max-width: 480px) {
+          .enquiry-card-wrapper {
+            padding: 1.6rem 1.15rem !important;
+          }
+          .enquiry-success-btns a {
+            width: 100% !important;
           }
         }
       `}</style>

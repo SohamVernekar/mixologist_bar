@@ -13,9 +13,10 @@ export default function VideoBanner() {
 
   return (
     <section
+      className="video-banner-section"
       style={{
         position: 'relative',
-        minHeight: '480px',
+        minHeight: '440px',
         width: '100%',
         display: 'flex',
         alignItems: 'center',
@@ -41,6 +42,7 @@ export default function VideoBanner() {
           loop
           muted
           playsInline
+          preload="metadata"
           style={{
             width: '100%',
             height: '100%',
@@ -182,6 +184,13 @@ export default function VideoBanner() {
           </div>
         </div>
       </div>
+      <style>{`
+        @media (max-width: 640px) {
+          .video-banner-section {
+            min-height: 380px !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }

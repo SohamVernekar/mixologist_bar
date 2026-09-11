@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, ChevronDown, GlassWater } from 'lucide-react';
+import { ArrowRight, GlassWater } from 'lucide-react';
 import { ASSETS, SITE_INFO } from '../data/siteData';
 
 export default function Hero() {
@@ -75,13 +75,13 @@ export default function Hero() {
             <h1
               style={{
                 fontFamily: 'var(--font-serif)',
-                fontSize: 'clamp(2.6rem, 5.2vw, 4.6rem)',
+                fontSize: 'clamp(2.1rem, 6.8vw, 4.6rem)',
                 lineHeight: 1.06,
                 fontWeight: '700',
                 letterSpacing: '0.03em',
                 color: '#ffffff',
                 textTransform: 'uppercase',
-                marginBottom: '1.8rem',
+                marginBottom: '1.5rem',
               }}
               className="animate-slide-up"
             >
@@ -98,11 +98,11 @@ export default function Hero() {
             <p
               style={{
                 fontFamily: 'var(--font-sans)',
-                fontSize: 'clamp(1.02rem, 1.35vw, 1.2rem)',
+                fontSize: 'clamp(0.98rem, 2vw, 1.2rem)',
                 lineHeight: 1.65,
                 color: 'rgba(230, 230, 242, 0.88)',
                 maxWidth: '580px',
-                marginBottom: '2.5rem',
+                marginBottom: '2.2rem',
                 fontWeight: '400',
               }}
             >
@@ -114,10 +114,11 @@ export default function Hero() {
               style={{
                 display: 'flex',
                 flexWrap: 'wrap',
-                gap: '1.2rem',
+                gap: '1rem',
                 alignItems: 'center',
-                marginBottom: '3rem',
+                marginBottom: '2.5rem',
               }}
+              className="hero-buttons-wrap"
             >
               <a href="#enquiry" className="btn-primary">
                 <span>PLAN YOUR EVENT</span>
@@ -134,18 +135,26 @@ export default function Hero() {
               style={{
                 display: 'grid',
                 gridTemplateColumns: 'repeat(3, 1fr)',
-                gap: '1.5rem',
+                gap: '1rem',
                 borderTop: '1px solid rgba(255, 255, 255, 0.08)',
-                paddingTop: '1.8rem',
+                paddingTop: '1.6rem',
                 maxWidth: '540px',
               }}
               className="hero-metrics"
             >
-              <div>
+              <div
+                style={{
+                  background: 'rgba(255, 255, 255, 0.02)',
+                  border: '1px solid rgba(255, 255, 255, 0.05)',
+                  borderRadius: '2px',
+                  padding: '0.85rem 0.75rem',
+                  textAlign: 'center',
+                }}
+              >
                 <span
                   style={{
                     fontFamily: 'var(--font-serif)',
-                    fontSize: '1.35rem',
+                    fontSize: 'clamp(1.15rem, 3.5vw, 1.35rem)',
                     color: 'var(--gold-primary)',
                     fontWeight: '700',
                     display: 'block',
@@ -157,21 +166,30 @@ export default function Hero() {
                 </span>
                 <span
                   style={{
-                    fontSize: '0.72rem',
-                    letterSpacing: '0.12em',
+                    fontSize: '0.68rem',
+                    letterSpacing: '0.1em',
                     textTransform: 'uppercase',
                     color: 'var(--text-muted)',
+                    display: 'block',
                   }}
                 >
                   Cocktail Menus
                 </span>
               </div>
 
-              <div>
+              <div
+                style={{
+                  background: 'rgba(255, 255, 255, 0.02)',
+                  border: '1px solid rgba(255, 255, 255, 0.05)',
+                  borderRadius: '2px',
+                  padding: '0.85rem 0.75rem',
+                  textAlign: 'center',
+                }}
+              >
                 <span
                   style={{
                     fontFamily: 'var(--font-serif)',
-                    fontSize: '1.35rem',
+                    fontSize: 'clamp(1.15rem, 3.5vw, 1.35rem)',
                     color: 'var(--gold-primary)',
                     fontWeight: '700',
                     display: 'block',
@@ -183,21 +201,30 @@ export default function Hero() {
                 </span>
                 <span
                   style={{
-                    fontSize: '0.72rem',
-                    letterSpacing: '0.12em',
+                    fontSize: '0.68rem',
+                    letterSpacing: '0.1em',
                     textTransform: 'uppercase',
                     color: 'var(--text-muted)',
+                    display: 'block',
                   }}
                 >
                   Live Mixology
                 </span>
               </div>
 
-              <div>
+              <div
+                style={{
+                  background: 'rgba(255, 255, 255, 0.02)',
+                  border: '1px solid rgba(255, 255, 255, 0.05)',
+                  borderRadius: '2px',
+                  padding: '0.85rem 0.75rem',
+                  textAlign: 'center',
+                }}
+              >
                 <span
                   style={{
                     fontFamily: 'var(--font-serif)',
-                    fontSize: '1.35rem',
+                    fontSize: 'clamp(1.15rem, 3.5vw, 1.35rem)',
                     color: 'var(--gold-primary)',
                     fontWeight: '700',
                     display: 'block',
@@ -209,13 +236,14 @@ export default function Hero() {
                 </span>
                 <span
                   style={{
-                    fontSize: '0.72rem',
-                    letterSpacing: '0.12em',
+                    fontSize: '0.68rem',
+                    letterSpacing: '0.1em',
                     textTransform: 'uppercase',
                     color: 'var(--text-muted)',
+                    display: 'block',
                   }}
                 >
-                  Destination Events
+                  Destinations
                 </span>
               </div>
             </div>
@@ -278,7 +306,7 @@ export default function Hero() {
                   bottom: 0,
                   left: 0,
                   width: '100%',
-                  padding: '1.5rem',
+                  padding: '1.25rem',
                   background: 'linear-gradient(180deg, transparent 0%, rgba(7, 7, 9, 0.85) 60%, rgba(7, 7, 9, 0.98) 100%)',
                   display: 'flex',
                   justifyContent: 'space-between',
@@ -289,7 +317,7 @@ export default function Hero() {
                   <span
                     style={{
                       fontFamily: 'var(--font-sans)',
-                      fontSize: '0.68rem',
+                      fontSize: '0.65rem',
                       letterSpacing: '0.2em',
                       textTransform: 'uppercase',
                       color: 'var(--gold-primary)',
@@ -303,7 +331,7 @@ export default function Hero() {
                   <span
                     style={{
                       fontFamily: 'var(--font-serif)',
-                      fontSize: '1.05rem',
+                      fontSize: 'clamp(0.95rem, 3.2vw, 1.05rem)',
                       color: '#ffffff',
                       fontWeight: '600',
                     }}
@@ -323,6 +351,7 @@ export default function Hero() {
                     alignItems: 'center',
                     justifyContent: 'center',
                     color: 'var(--gold-primary)',
+                    flexShrink: 0,
                   }}
                 >
                   <GlassWater size={15} />
@@ -337,22 +366,23 @@ export default function Hero() {
         @media (max-width: 960px) {
           .hero-split-grid {
             grid-template-columns: 1fr !important;
-            gap: 3rem !important;
+            gap: 2.5rem !important;
           }
           .hero-text-col, .hero-img-col {
             grid-column: span 12 !important;
           }
           .hero-img-col {
-            margin-top: 1rem;
-          }
-          .hero-metrics {
-            grid-template-columns: repeat(3, 1fr) !important;
+            margin-top: 0.5rem;
           }
         }
-        @media (max-width: 600px) {
-          .hero-metrics {
-            grid-template-columns: 1fr !important;
-            gap: 1rem !important;
+        @media (max-width: 480px) {
+          .hero-buttons-wrap {
+            flex-direction: column !important;
+            width: 100% !important;
+          }
+          .hero-buttons-wrap .btn-primary,
+          .hero-buttons-wrap .btn-secondary {
+            width: 100% !important;
           }
         }
       `}</style>

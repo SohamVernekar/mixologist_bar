@@ -52,7 +52,7 @@ export default function Process() {
           style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-            gap: '2.5rem',
+            gap: '2rem',
             position: 'relative',
           }}
           className="process-steps-grid"
@@ -60,9 +60,9 @@ export default function Process() {
           {PROCESS_STEPS.map((step, idx) => (
             <div
               key={idx}
-              className="glass-card"
+              className="glass-card process-step-card"
               style={{
-                padding: '2.5rem 2rem',
+                padding: '2.2rem 1.8rem',
                 borderRadius: '2px',
                 position: 'relative',
               }}
@@ -71,11 +71,11 @@ export default function Process() {
               <div
                 style={{
                   fontFamily: 'var(--font-serif)',
-                  fontSize: '3.2rem',
+                  fontSize: 'clamp(2.4rem, 6vw, 3.2rem)',
                   fontWeight: '800',
                   color: 'rgba(212, 175, 55, 0.25)',
                   lineHeight: 1,
-                  marginBottom: '1.25rem',
+                  marginBottom: '1rem',
                 }}
               >
                 {step.number}
@@ -84,10 +84,10 @@ export default function Process() {
               <h3
                 style={{
                   fontFamily: 'var(--font-serif)',
-                  fontSize: '1.3rem',
+                  fontSize: 'clamp(1.15rem, 3vw, 1.3rem)',
                   color: '#ffffff',
                   fontWeight: '600',
-                  marginBottom: '0.85rem',
+                  marginBottom: '0.75rem',
                   letterSpacing: '0.04em',
                 }}
               >
@@ -97,7 +97,7 @@ export default function Process() {
               <p
                 style={{
                   fontFamily: 'var(--font-sans)',
-                  fontSize: '0.92rem',
+                  fontSize: '0.9rem',
                   lineHeight: 1.65,
                   color: 'var(--text-muted)',
                 }}
@@ -110,8 +110,8 @@ export default function Process() {
                 style={{
                   position: 'absolute',
                   bottom: 0,
-                  left: '2rem',
-                  right: '2rem',
+                  left: '1.5rem',
+                  right: '1.5rem',
                   height: '2px',
                   background: 'linear-gradient(90deg, var(--gold-primary), transparent)',
                   opacity: 0.4,
@@ -121,6 +121,18 @@ export default function Process() {
           ))}
         </div>
       </div>
+
+      <style>{`
+        @media (max-width: 600px) {
+          .process-steps-grid {
+            grid-template-columns: 1fr !important;
+            gap: 1.25rem !important;
+          }
+          .process-step-card {
+            padding: 1.6rem 1.25rem !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }

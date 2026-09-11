@@ -22,7 +22,8 @@ export default function Footer() {
       style={{
         backgroundColor: '#040406',
         borderTop: '1px solid rgba(255, 255, 255, 0.08)',
-        padding: '5rem 0 3rem',
+        paddingTop: '5rem',
+        paddingBottom: 'calc(3rem + var(--safe-bottom))',
         position: 'relative',
       }}
     >
@@ -59,6 +60,7 @@ export default function Footer() {
                   alignItems: 'center',
                   justifyContent: 'center',
                   color: '#d4af37',
+                  flexShrink: 0,
                 }}
               >
                 <GlassWater size={17} />
@@ -79,7 +81,7 @@ export default function Footer() {
             <p
               style={{
                 fontFamily: 'var(--font-editorial)',
-                fontSize: '1.3rem',
+                fontSize: '1.25rem',
                 color: 'var(--gold-light)',
                 fontStyle: 'italic',
                 marginBottom: '1.25rem',
@@ -92,7 +94,7 @@ export default function Footer() {
               style={{
                 fontFamily: 'var(--font-sans)',
                 fontSize: '0.9rem',
-                lineHeight: 1.65,
+                lineHeight: '1.65',
                 color: 'var(--text-muted)',
                 maxWidth: '400px',
               }}
@@ -110,7 +112,7 @@ export default function Footer() {
                 letterSpacing: '0.2em',
                 textTransform: 'uppercase',
                 color: 'var(--gold-primary)',
-                marginBottom: '1.5rem',
+                marginBottom: '1.25rem',
                 fontWeight: '700',
               }}
             >
@@ -121,7 +123,7 @@ export default function Footer() {
               style={{
                 display: 'grid',
                 gridTemplateColumns: 'repeat(2, 1fr)',
-                gap: '0.75rem',
+                gap: '0.5rem',
               }}
             >
               {navLinks.map((link) => (
@@ -129,14 +131,18 @@ export default function Footer() {
                   key={link.name}
                   href={link.href}
                   style={{
-                    color: 'rgba(230, 230, 240, 0.7)',
+                    color: 'rgba(230, 230, 240, 0.75)',
                     textDecoration: 'none',
                     fontSize: '0.85rem',
                     letterSpacing: '0.05em',
                     transition: 'color 0.3s ease',
+                    padding: '0.5rem 0',
+                    display: 'flex',
+                    alignItems: 'center',
+                    minHeight: '40px',
                   }}
                   onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--gold-primary)')}
-                  onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(230, 230, 240, 0.7)')}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(230, 230, 240, 0.75)')}
                 >
                   {link.name}
                 </a>
@@ -153,7 +159,7 @@ export default function Footer() {
                 letterSpacing: '0.2em',
                 textTransform: 'uppercase',
                 color: 'var(--gold-primary)',
-                marginBottom: '1.5rem',
+                marginBottom: '1.25rem',
                 fontWeight: '700',
               }}
             >
@@ -168,9 +174,10 @@ export default function Footer() {
                 color: '#ffffff',
                 fontSize: '0.9rem',
                 marginBottom: '1.5rem',
+                wordBreak: 'break-word',
               }}
             >
-              <Mail size={16} style={{ color: 'var(--gold-primary)' }} />
+              <Mail size={16} style={{ color: 'var(--gold-primary)', flexShrink: 0 }} />
               <a
                 href={`mailto:${SITE_INFO.contactEmail}`}
                 style={{
@@ -190,7 +197,7 @@ export default function Footer() {
               className="btn-secondary"
               style={{
                 display: 'inline-flex',
-                padding: '0.65rem 1.25rem',
+                padding: '0.75rem 1.4rem',
                 fontSize: '0.75rem',
               }}
             >
@@ -210,6 +217,7 @@ export default function Footer() {
             flexWrap: 'wrap',
             gap: '1rem',
           }}
+          className="footer-bottom-row"
         >
           <p
             style={{
@@ -228,7 +236,7 @@ export default function Footer() {
               background: 'rgba(255, 255, 255, 0.04)',
               border: '1px solid rgba(255, 255, 255, 0.1)',
               color: 'var(--text-muted)',
-              padding: '0.5rem 1rem',
+              padding: '0.6rem 1.1rem',
               borderRadius: '2px',
               cursor: 'pointer',
               display: 'flex',
@@ -238,6 +246,7 @@ export default function Footer() {
               letterSpacing: '0.1em',
               textTransform: 'uppercase',
               transition: 'all 0.3s ease',
+              minHeight: '40px',
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.borderColor = 'var(--gold-primary)';
@@ -262,6 +271,13 @@ export default function Footer() {
           }
           .footer-col-main, .footer-col-nav, .footer-col-contact {
             grid-column: span 12 !important;
+          }
+        }
+        @media (max-width: 480px) {
+          .footer-bottom-row {
+            flex-direction: column-reverse !important;
+            align-items: center !important;
+            text-align: center !important;
           }
         }
       `}</style>

@@ -1,6 +1,5 @@
 import React from 'react';
 import { ASSETS } from '../data/siteData';
-import { Wine, Flame, Layers } from 'lucide-react';
 
 export default function Intro() {
   return (
@@ -231,11 +230,11 @@ export default function Intro() {
 
             {/* Overlapping Accent Card */}
             <div
-              className="glass-panel"
+              className="glass-panel intro-overlap-card"
               style={{
                 position: 'absolute',
                 bottom: '-1.5rem',
-                left: '-2rem',
+                left: '-1.5rem',
                 padding: '1.2rem 1.5rem',
                 borderRadius: '2px',
                 border: '1px solid rgba(212, 175, 55, 0.35)',
@@ -264,10 +263,18 @@ export default function Intro() {
         @media (max-width: 960px) {
           .intro-editorial-grid {
             grid-template-columns: 1fr !important;
-            gap: 3.5rem !important;
+            gap: 2.5rem !important;
           }
           .intro-text-col, .intro-img-col {
             grid-column: span 12 !important;
+          }
+        }
+        @media (max-width: 600px) {
+          .intro-overlap-card {
+            left: 0.75rem !important;
+            bottom: -1rem !important;
+            max-width: calc(100% - 1.5rem) !important;
+            padding: 0.9rem 1.1rem !important;
           }
         }
       `}</style>

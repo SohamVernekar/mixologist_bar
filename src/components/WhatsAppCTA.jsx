@@ -3,9 +3,7 @@ import { MessageCircle } from 'lucide-react';
 
 export default function WhatsAppCTA() {
   const handleWhatsAppClick = () => {
-    // Elegant WhatsApp link handling
     const text = encodeURIComponent("Hello Mixologist Barz, I would like to inquire about booking an event bar experience.");
-    // In production, when client phone is provided, replace with `https://wa.me/<number>?text=${text}`
     window.open(`https://wa.me/?text=${text}`, '_blank', 'noopener,noreferrer');
   };
 
@@ -13,9 +11,9 @@ export default function WhatsAppCTA() {
     <div
       style={{
         position: 'fixed',
-        bottom: '2rem',
-        right: '2rem',
-        zIndex: 40,
+        bottom: 'calc(1.25rem + var(--safe-bottom, 0px))',
+        right: 'max(1rem, var(--safe-right, 0px))',
+        zIndex: 45,
       }}
     >
       <button
@@ -24,27 +22,29 @@ export default function WhatsAppCTA() {
         style={{
           display: 'flex',
           alignItems: 'center',
-          gap: '0.65rem',
-          backgroundColor: 'rgba(14, 18, 16, 0.88)',
+          gap: '0.6rem',
+          backgroundColor: 'rgba(10, 14, 12, 0.92)',
           backdropFilter: 'blur(16px)',
           WebkitBackdropFilter: 'blur(16px)',
-          border: '1px solid rgba(34, 197, 94, 0.4)',
+          border: '1px solid rgba(34, 197, 94, 0.45)',
           borderRadius: '30px',
-          padding: '0.75rem 1.35rem',
+          padding: '0.65rem 1.15rem',
+          minHeight: '44px',
           color: '#ffffff',
           cursor: 'pointer',
-          boxShadow: '0 10px 25px rgba(0, 0, 0, 0.5), 0 0 15px rgba(34, 197, 94, 0.15)',
-          transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
+          boxShadow: '0 8px 24px rgba(0, 0, 0, 0.6), 0 0 15px rgba(34, 197, 94, 0.2)',
+          transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+          touchAction: 'manipulation',
         }}
         onMouseEnter={(e) => {
-          e.currentTarget.style.transform = 'translateY(-3px)';
+          e.currentTarget.style.transform = 'translateY(-2px)';
           e.currentTarget.style.borderColor = '#22c55e';
-          e.currentTarget.style.boxShadow = '0 14px 30px rgba(0, 0, 0, 0.6), 0 0 25px rgba(34, 197, 94, 0.3)';
+          e.currentTarget.style.boxShadow = '0 12px 28px rgba(0, 0, 0, 0.7), 0 0 22px rgba(34, 197, 94, 0.35)';
         }}
         onMouseLeave={(e) => {
           e.currentTarget.style.transform = 'translateY(0)';
-          e.currentTarget.style.borderColor = 'rgba(34, 197, 94, 0.4)';
-          e.currentTarget.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.5), 0 0 15px rgba(34, 197, 94, 0.15)';
+          e.currentTarget.style.borderColor = 'rgba(34, 197, 94, 0.45)';
+          e.currentTarget.style.boxShadow = '0 8px 24px rgba(0, 0, 0, 0.6), 0 0 15px rgba(34, 197, 94, 0.2)';
         }}
       >
         <div
@@ -57,19 +57,21 @@ export default function WhatsAppCTA() {
             alignItems: 'center',
             justifyContent: 'center',
             color: '#050505',
+            flexShrink: 0,
           }}
         >
-          <MessageCircle size={15} />
+          <MessageCircle size={14} strokeWidth={2.5} />
         </div>
 
         <span
           style={{
             fontFamily: 'var(--font-sans)',
-            fontSize: '0.75rem',
+            fontSize: '0.72rem',
             fontWeight: '700',
-            letterSpacing: '0.14em',
+            letterSpacing: '0.12em',
             textTransform: 'uppercase',
             color: '#ffffff',
+            whiteSpace: 'nowrap',
           }}
         >
           CHAT WITH US
@@ -78,3 +80,4 @@ export default function WhatsAppCTA() {
     </div>
   );
 }
+
